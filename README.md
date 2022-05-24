@@ -1,5 +1,5 @@
-# maniafrauddetector
- detects similarities in osu maps
+# maniaFraudDetector
+ detects similarities in osu mania maps
  
  put any amount of .osu or .osz files into the .py's folder 
  
