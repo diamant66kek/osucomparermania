@@ -73,8 +73,9 @@ for i in range(len(osuFiles)):
     offset -= 1
 
 fileCombinations = list(combinations(osuFiles, 2))
-
-limit=33*(1/40*len(fileCombinations)/((1/40*len(fileCombinations)+1)))
+limit=0
+if len(fileCombinations) >6:
+    limit=33*(1/40*len(fileCombinations)/((1/40*len(fileCombinations)+1)))
 
 while fileCombinations:
     print("\n\n")
