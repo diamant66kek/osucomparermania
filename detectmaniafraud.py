@@ -47,6 +47,8 @@ def readManiaOsu(filePath: str, openFunc: function, initialTimingPoint: int = No
                 else:
                     returnList.append([time, newObject])
                     oldTime=time
+    if len(returnList) == 0:
+        returnList.append([0,(0,)])
     return (returnList, timingOffset)
 
 print("Put .osu or .osz files you want to compare into this programs Folder")
