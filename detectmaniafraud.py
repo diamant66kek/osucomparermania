@@ -35,6 +35,8 @@ def readManiaOsu(filePath: str, openFunc: function, initialTimingPoint: int = No
                     hitObjectSectionFound = True
             else:
                 column,_,time,objectType,_,endTime, = line.split(':')[0].split(',', 6)[0:6]
+                try: int(endTime) 
+                except: return [[0,(0,)]],0
                 if initialTimingPoint is not None:
                     time = int(time) + timingOffset
                     endTime = int(endTime) + timingOffset
@@ -62,7 +64,6 @@ osuFiles = [(path, open) for path in listdir(file_directory) if path.endswith(".
 offset=0
 for i in range(len(osuFiles)):
     if not osuFiles[i+offset][0].endswith(".osz"): continue
-    #print(f"osz: {filePath}")
     zip = zipfile.ZipFile(osuFiles[i+offset][0])
     oszContent = zip.namelist()
     print(oszContent)
@@ -79,11 +80,11 @@ if len(fileCombinations) >6:
 
 while fileCombinations:
     print("\n\n")
+    print("Comparing: \n",fileCombinations[0][0][0],"\n",fileCombinations[0][1][0])
     list1, timingOffset = readManiaOsu(*fileCombinations[0][0])
     list2,_ = readManiaOsu(*fileCombinations[0][1], timingOffset)
-    print("Comparing: \n",fileCombinations[0][0][0],"\n",fileCombinations[0][1][0])
     fileCombinations.pop(0)
-
+    
     if list1[-1][0] > list2[-1][0]:
         list1_ = list1
         list1 = list2
